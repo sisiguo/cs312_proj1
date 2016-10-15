@@ -4,3 +4,5 @@
     - tabbed out some queries that don't work right now... some of the reasons I could think of why are in the todo.txt, could you check these over to see if it makes sense and also why some of the queries that don't have reasons listed in the todo.txt don't work?
     - added a todo.txt to list out some things we'll have to work on
     - added extras.txt to keep track of the possible add-ons
+    - added two question predicates for "what is" with two predicates in the body
+    - changed publisher to an atom (not a list) so that publisher(harperCollins) succeeds

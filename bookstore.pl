@@ -83,6 +83,12 @@ question([what,is | T0],T1,Ind,C0,C1) :-
     mp(T0,T1,Ind,C0,C1).
 question([what,is | T0],T1,Ind,C0,C1) :-
     noun_phrase(T0,T1,Ind,C0,C1).
+question([what,is| T0],T2,Obj,C0,C2) :-
+    noun_phrase(T0,T1,Obj,C0,C1),
+    mp(T1,T2,Obj,C1,C2).
+question([what,is| T0],T2,Obj,C0,C2) :-
+    mp(T0,T1,Obj,C0,C1),
+    noun_phrase(T1,T2,Obj,C1,C2).
 question([is | T0],T2,Ind,C0,C2) :-
     noun_phrase(T0,T1,Ind,C0,C1),
     mp(T1,T2,Ind,C1,C2).
@@ -120,13 +126,14 @@ prove_all([H|T]) :-
 %
 
 % author([F,L]) is true if F is a first name and L is a last name of an author
-author([emma,donoghue]).
+author(F) :- author_full_name(F,L).
+author_full_name(emma,donoghue).
 
 % book(T) is true if T is a list representing the title of a book
 book([the,wonder]).
 
 % publisher(P) is true if P is a publisher
-publisher([harperCollins]).
+publisher(harperCollins).
 
 
 %
@@ -137,7 +144,7 @@ publisher([harperCollins]).
 wrote(author([emma,donoghue]), book([the,wonder])).
 
 % published(P,B) is true if publisher P published book B
-published(publisher([harperCollins]), book([the,wonder])).
+published(publisher(harperCollins), book([the,wonder])).
 
 
 %
