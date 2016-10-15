@@ -1,0 +1,34 @@
+* Category
+* Length
+* Author
+* Title (Book)
+* Publisher
+* Price
+____________________________________________
+
+* Determiners: [], the, a, an
+
+* Conjunction: and
+
+* Preposition:
+
+* Modifying: [], that
+
+* Noun: author, book, publisher
+
+* Relation:
+--> wrote
+--> by
+--> published
+--> costs
+--> author_of
+--> publisher_of
+--> published_by
+
+* Adjectives:
+--> all_categories
+--> cost
+--> long
+--> more_than ...pages/dollars, ? has_more_than
+--> less_than ...pages/dollars, ? has_less_than
+--> length ?

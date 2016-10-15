@@ -1,0 +1,4 @@
+* Supporting optional First/Last name inputs for author, so have to have both first & last name specified
+    - Examples: 
+        %% ?- ask([what,is,a,book,by,emma],R).
+        %% ?- ask([what,is,a,book,by,donoghue],R).

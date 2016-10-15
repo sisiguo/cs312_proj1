@@ -1,0 +1,39 @@
+%%% Queries
+%% ?- ask([what,is,a,book],R).
+    %% ?- ask([what,is,a,book,by,emma,donoghue],R).
+    %% ?- ask([what,is,a,book,that,has,more,than,500,pages],R).
+    %% ?- ask([what,is,a,book,that,has,less,than,500,pages],R).
+    %% ?- ask([what,is,a,book,published,by,harperCollins],R).
+    %% ?- ask([what,is,a,historical,book,published,by,harperCollins],R).
+    %% ?- ask([what,is,a,fiction,book],R).
+    %% ?- ask([what,is,a,historical,book],R).
+    %% ?- ask([what,is,a,fiction,and,historical,book],R).
+    %% ?- ask([what,is,a,historical,book,by,emma,donoghue],R).
+    %% ?- ask([what,is,a,historical,book,that,has,more,than,500,pages],R).
+    %% ?- ask([what,is,a,historical,book,that,has,less,than,500,pages],R).
+    %% ?- ask([what,is,the,price,of,the,wonder],R).
+    %% ?- ask([what,is,the,length,of,the,wonder],R).
+
+    %% ?- ask([what,book,costs,more,than,20,dollars],R).
+
+%% ?- ask([who,is,an,author],R).
+%% ?- ask([who,is,a,publisher],R).
+    %% ?- ask([who,is,the,author,of,the,wonder],R).
+    %% ?- ask([who,is,the,publisher,of,the,wonder],R).
+
+    %% ?- ask([who,published,the,wonder],R).
+    %% ?- ask([who,wrote,the,wonder],R).
+
+    %% ?- ask([how,much,does,the,wonder,cost],R).
+    %% ?- ask([how,much,is,the,wonder],R).
+
+    %% ?- ask([is,emma,donoghue,the,author,of,the,wonder],_).
+    %% ?- ask([is,the,wonder,in,the,category,of,fiction],_).
+    %% ?- ask([is,the,wonder,a,fiction,book],_).
+    %% ?- ask([is,the,wonder,a,fiction,and,historical,book],_).
+    %% ?- ask([is,harperCollins,the,publisher,of,the,wonder],_).
+    %% ?- ask([is,the,wonder,more,than,500,pages,long],_).
+    %% ?- ask([is,the,wonder,more,than,500,pages],_).
+    %% ?- ask([is,the,wonder,less,than,500,pages,long],_).
+    %% ?- ask([is,the,wonder,less,than,500,pages],_).
+    %% ?- ask([is,the,wonder,a,fiction,book,more,than,500,pages,long],_).

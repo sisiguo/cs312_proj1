@@ -1,0 +1,6 @@
+* Oct. 14th
+    - had to change 'author' back to being a list to prevent an "Undefined procedure: author/1" error b/c 'Ind' when passed as 'author(Ind)' in the 'noun' definition is only one argument and not two.
+    - reorderd some things for organization
+    - tabbed out some queries that don't work right now... some of the reasons I could think of why are in the todo.txt, could you check these over to see if it makes sense and also why some of the queries that don't have reasons listed in the todo.txt don't work?
+    - added a todo.txt to list out some things we'll have to work on
+    - added extras.txt to keep track of the possible add-ons
