@@ -2,3 +2,8 @@
     - Examples: 
         %% ?- ask([what,is,a,book,by,emma],R).
         %% ?- ask([what,is,a,book,by,donoghue],R).
+
+* Matching variable length individuals
+	- Examples:
+		- author
+		- publisher

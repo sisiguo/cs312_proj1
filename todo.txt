@@ -17,8 +17,6 @@
 
 * 'is <book> more/less than...'
 
-* think of a way to represent author so that Prolog does not check only one element; e.g. author(emma) fails
---> reason why ask([what,is,a,book,by,emma,donoghue],R). fails
+* support more than 2 words in a book title 
 
-* need to include the empty list as the rest of the difference list and let Prolog know that empty list is the end
---> reason why ask([what,is,a,book,published,by,harperCollins],R). fails
+* support more than 2 words in a publisher
