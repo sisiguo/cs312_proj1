@@ -43,6 +43,9 @@ adjectives(T,T,_,C,C).
 % a relation (verb or preposition) followed by a noun_phrase or
 % 'that' followed by a relation then a noun_phrase or
 % nothing 
+mp([and | T0],T2,I1,C0,C2) :-
+    adj(T0,T1,I1,C0,C1),
+    noun_phrase(T1,T2,I1,C1,C2).
 mp(T0,T2,I1,C0,C2) :-
     reln(T0,T1,I1,_,C0,C1),
     adjectives(T1,T2,I1,C1,C2).
@@ -114,6 +117,10 @@ question([what,is| T0],T2,Obj,C0,C2) :-
 question([what,is| T0],T2,Obj,C0,C2) :-
     mp(T0,T1,Obj,C0,C1),
     noun_phrase(T1,T2,Obj,C1,C2).
+question([what,is | T0],T3,Ind,C0,C3) :-
+    det(T0,T1,Ind,C0,C1),
+    adj(T1,T2,Ind,C1,C2),
+    mp(T2,T3,Ind,C2,C3).
 
 question([is | T0],T2,Ind,C0,C2) :-
     noun_phrase(T0,T1,Ind,C0,C1),
