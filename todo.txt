@@ -11,8 +11,6 @@
 
 * '...category of...<category>...'
 
-* 'is <book> more/less than...'
-
 * support more than 2 words in a book title 
 
 * support more than 2 words in a publisher
