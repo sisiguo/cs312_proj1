@@ -43,8 +43,9 @@ adjectives(T,T,_,C,C).
 % a relation (verb or preposition) followed by a noun_phrase or
 % 'that' followed by a relation then a noun_phrase or
 % nothing 
-mp(T0,T1,I1,C0,C1) :-
-    reln(T0,T1,I1,_,C0,C1).
+mp(T0,T2,I1,C0,C2) :-
+    reln(T0,T1,I1,_,C0,C1),
+    adjectives(T1,T2,I1,C1,C2).
 mp(T0,T2,I1,C0,C2) :-
     reln(T0,T1,I1,_,C0,C1),
     noun(T1,T2,I1,C1,C2).
@@ -87,6 +88,8 @@ reln([published | T],T,I1,I2,C,[published(I1,I2)|C]).
 reln([costs | T],T,I1,I2,C,[price(I1,I2)|C]).
 reln([the, author, of | T],T,I1,I2,C,[wrote(I1,I2)|C]).
 reln([the, publisher, of | T],T,I1,I2,C,[published(I1,I2)|C]).
+reln([the, length, of | T],T,I1,I2,C,[num_pages(I2,I1)|C]).
+
 reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
 reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
 reln([more,than,X,dollars | T],T,I1,I2,C,[price(I1,I2), number(X), more_than_dollars(I1,X)|C]).

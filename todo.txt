@@ -7,6 +7,8 @@
 
 * 'how,much,is,the,wonder'
 
+* 'how,long,is,the,wonder'
+
 * '...category of...<category>...'
 
 * 'is <book> more/less than...'
