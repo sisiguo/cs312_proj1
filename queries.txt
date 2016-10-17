@@ -43,8 +43,8 @@
 %% ?- ask([is,the,wonder,less,than,500,pages],_).
 %% ?- ask([is,the,wonder,less,than,100,pages],_).
     %% ?- ask([is,the,wonder,a,fiction,book,more,than,500,pages,long],_).
-    %% ?- ask([is,the,wonder,a,fiction,book,more,than,500,pages],_).
-    %% ?- ask([is,the,wonder,a,fiction,book,more,than,100,pages],_).
+%% ?- ask([is,the,wonder,a,fiction,book,more,than,500,pages],_).
+%% ?- ask([is,the,wonder,a,fiction,book,more,than,100,pages],_).
     %% ?- ask([is,the,wonder,a,fiction,book,less,than,500,pages,long],_).
-    %% ?- ask([is,the,wonder,a,fiction,book,less,than,500,pages],_).
-    %% ?- ask([is,the,wonder,a,fiction,book,less,than,50,pages],_).
+%% ?- ask([is,the,wonder,a,fiction,book,less,than,500,pages],_).
+%% ?- ask([is,the,wonder,a,fiction,book,less,than,100,pages],_).

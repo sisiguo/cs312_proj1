@@ -1,13 +1,7 @@
-* for the 'adj' more_than, less_than variants should we check the the '_,pages/dollars' that the '_' is actually a number? 
-    - So would add something like: [number(_),pages | T] instead of just [_,pages | T] to prevent users from inputing cat or something and have it pass?
 
 * conjunction 'and': <adj> ..and.. <adj> ?or something like this
 
-* 'has more/less than ...'
-
 * 'price of ...'
-
-* 'length of ...'
 
 * 'how,much,does,the,wonder,cost'
 
