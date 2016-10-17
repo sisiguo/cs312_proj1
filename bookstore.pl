@@ -74,8 +74,8 @@ noun([Ind | T],T,[Ind],C,C) :- publisher([Ind]).
 noun([Ind1, Ind2 | T],T,[Ind1, Ind2],C,C) :- publisher([Ind1, Ind2]).
 
 % adj(T0,T1,Ind,C0,C1) is true if T0-T1 is an adjective that provides properties C1-C0 to Ind
-adj([fiction | T],T,Ind,C,[fiction(Ind)|C]).
-adj([historical | T],T,Ind,C,[historical(Ind)|C]).
+adj([fiction | T],T,Ind,C,[category(Ind, fiction)|C]).
+adj([historical | T],T,Ind,C,[category(Ind, historical)|C]).
 adj([cost | T],T,Ind,C,[price(Ind,_)|C]).
 adj([long | T],T,Ind,C,[num_pages(Ind,_)|C]).
 
@@ -90,6 +90,7 @@ reln([the, author, of | T],T,I1,I2,C,[wrote(I1,I2)|C]).
 reln([the, publisher, of | T],T,I1,I2,C,[published(I1,I2)|C]).
 reln([the, length, of | T],T,I1,I2,C,[num_pages(I2,I1)|C]).
 reln([the, price, of | T],T,I1,I2,C,[price(I2,I1)|C]).
+reln([in, the, category, of, I2 | T],T,I1,I2,C,[category(I1,I2)|C]).
 
 reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
 reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
@@ -227,12 +228,7 @@ less_than_pages(B,N) :- num_pages(B,L), L < N.
 % Categories (adjective)
 %
 
-% fiction(B) is true if book B is a fiction book
-fiction([the,wonder]).
-
-% non_fiction(B) is true if book B is a non-fiction book
-% TODO
-
-% historical(B) is true if book B is a historical book
-historical([the,wonder]).
+% category(B,C) is true if book B has category C
+category([the,wonder],fiction).
+category([the,wonder],historical).
 
