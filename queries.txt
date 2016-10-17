@@ -15,7 +15,7 @@
 %% ?- ask([what,is,a,historical,book,that,has,more,than,100,pages],R).
 %% ?- ask([what,is,a,historical,book,that,has,less,than,500,pages],R).
 %% ?- ask([what,is,a,historical,book,that,has,less,than,50,pages],R).
-    %% ?- ask([what,is,the,price,of,the,wonder],R).
+%% ?- ask([what,is,the,price,of,the,wonder],R).
 %% ?- ask([what,is,the,length,of,the,wonder],R).
 
 %% ?- ask([what,book,costs,more,than,20,dollars],R).
@@ -28,9 +28,6 @@
 
 %% ?- ask([who,published,the,wonder],R).
 %% ?- ask([who,wrote,the,wonder],R).
-
-    %% ?- ask([how,much,does,the,wonder,cost],R).
-    %% ?- ask([how,much,is,the,wonder],R). 
 
 %% ?- ask([is,emma,donoghue,the,author,of,the,wonder],_).
     %% ?- ask([is,the,wonder,in,the,category,of,fiction],_).

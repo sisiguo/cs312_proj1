@@ -7,3 +7,8 @@
 	- Examples:
 		- author
 		- publisher
+
+* Parsing 'how much...' type queries to use correct relations:
+    - Examples:
+        %% ?- ask([how,much,does,the,wonder,cost],R).
+        %% ?- ask([how,much,is,the,wonder],R). 

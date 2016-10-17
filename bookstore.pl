@@ -89,6 +89,7 @@ reln([costs | T],T,I1,I2,C,[price(I1,I2)|C]).
 reln([the, author, of | T],T,I1,I2,C,[wrote(I1,I2)|C]).
 reln([the, publisher, of | T],T,I1,I2,C,[published(I1,I2)|C]).
 reln([the, length, of | T],T,I1,I2,C,[num_pages(I2,I1)|C]).
+reln([the, price, of | T],T,I1,I2,C,[price(I2,I1)|C]).
 
 reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
 reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
