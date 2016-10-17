@@ -18,6 +18,13 @@ noun_phrase(T0,T4,Ind,C0,C4) :-
     noun(T2,T3,Ind,C2,C3),
     mp(T3,T4,Ind,C3,C4).
 
+opt_noun_phrase(T0,T4,Ind,C0,C4) :-
+    det(T0,T1,Ind,C0,C1),
+    adjectives(T1,T2,Ind,C1,C2),
+    noun(T2,T3,Ind,C2,C3),
+    mp(T3,T4,Ind,C3,C4).
+opt_noun_phrase(T,T,_,C,C).
+
 % Determiners (articles) are ignored in this oversimplified example.
 % They do not provide any extra constaints.
 det([the | T],T,_,C,C).
@@ -36,6 +43,8 @@ adjectives(T,T,_,C,C).
 % a relation (verb or preposition) followed by a noun_phrase or
 % 'that' followed by a relation then a noun_phrase or
 % nothing 
+mp(T0,T1,I1,C0,C1) :-
+    reln(T0,T1,I1,_,C0,C1).
 mp(T0,T2,I1,C0,C2) :-
     reln(T0,T1,I1,_,C0,C1),
     noun(T1,T2,I1,C1,C2).
@@ -44,7 +53,7 @@ mp(T0,T2,I1,C0,C2) :-
     noun_phrase(T1,T2,I2,C1,C2).
 mp([that|T0],T2,I1,C0,C2) :-
     reln(T0,T1,I1,I2,C0,C1),
-    noun_phrase(T1,T2,I2,C1,C2).
+    opt_noun_phrase(T1,T2,I2,C1,C2).
 mp(T,T,_,C,C).
 
 
@@ -68,10 +77,6 @@ adj([fiction | T],T,Ind,C,[fiction(Ind)|C]).
 adj([historical | T],T,Ind,C,[historical(Ind)|C]).
 adj([cost | T],T,Ind,C,[price(Ind,_)|C]).
 adj([long | T],T,Ind,C,[num_pages(Ind,_)|C]).
-adj([more,than | T],[_,pages | T],Ind,C,[num_pages(Ind,_)|C]).
-adj([less,than | T],[_,pages | T],Ind,C,[num_pages(Ind,_)|C]).
-adj([more,than | T],[_,dollars | T],Ind,C,[price(Ind,_)|C]).
-adj([less,than | T],[_,dollars | T],Ind,C,[price(Ind,_)|C]).
 
 % reln(T0,T1,I1,I2,R0,R1) is true if T0-T1 is a relation
 %   that provides relations R1-R0 on individuals I1 and I2
@@ -82,6 +87,15 @@ reln([published | T],T,I1,I2,C,[published(I1,I2)|C]).
 reln([costs | T],T,I1,I2,C,[price(I1,I2)|C]).
 reln([the, author, of | T],T,I1,I2,C,[wrote(I1,I2)|C]).
 reln([the, publisher, of | T],T,I1,I2,C,[published(I1,I2)|C]).
+reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
+reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
+reln([more,than,X,dollars | T],T,I1,I2,C,[price(I1,I2), number(X), more_than_dollars(I1,X)|C]).
+reln([less,than,X,dollars | T],T,I1,I2,C,[price(I1,I2), number(X), less_than_dollars(I1,X)|C]).
+
+reln([has,more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
+reln([has,less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
+reln([has,more,than,X,dollars | T],T,I1,I2,C,[price(I1,I2), number(X), more_than_dollars(I1,X)|C]).
+reln([has,less,than,X,dollars | T],T,I1,I2,C,[price(I1,I2), number(X), less_than_dollars(I1,X)|C]).
 
 
 % question(Question,QR,Indect,Q0,Query) is true if Query-Q0 provides an answer about Indect to Question-QR
