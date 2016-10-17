@@ -9,8 +9,9 @@
 %% ?- ask([what,is,a,historical,book,published,by,harperCollins],R).
 %% ?- ask([what,is,a,fiction,book],R).
 %% ?- ask([what,is,a,historical,book],R).
-    %% ?- ask([what,is,a,fiction,and,historical,book],R).
-    %% ?- ask([what,is,a,fiction,and,historical,book,that,has,more,than,500,pages],R).
+%% ?- ask([what,is,a,fiction,and,historical,book],R).
+%% ?- ask([what,is,a,fiction,and,historical,book,that,has,more,than,500,pages],R).
+%% ?- ask([what,is,a,fiction,and,historical,book,that,has,more,than,100,pages],R).
 %% ?- ask([what,is,a,historical,book,by,emma,donoghue],R).
 %% ?- ask([what,is,a,historical,book,that,has,more,than,500,pages],R).
 %% ?- ask([what,is,a,historical,book,that,has,more,than,100,pages],R).
@@ -33,7 +34,7 @@
 %% ?- ask([is,emma,donoghue,the,author,of,the,wonder],_).
 %% ?- ask([is,the,wonder,in,the,category,of,fiction],_).
 %% ?- ask([is,the,wonder,a,fiction,book],_).
-    %% ?- ask([is,the,wonder,a,fiction,and,historical,book],_).
+%% ?- ask([is,the,wonder,a,fiction,and,historical,book],_).
 %% ?- ask([is,harperCollins,the,publisher,of,the,wonder],_).
 %% ?- ask([is,the,wonder,more,than,500,pages,long],_).
 %% ?- ask([is,the,wonder,more,than,100,pages,long],_).
@@ -51,3 +52,4 @@
 %% ?- ask([is,the,wonder,a,fiction,book,less,than,50,pages,long],_).
 %% ?- ask([is,the,wonder,a,fiction,book,less,than,500,pages],_).
 %% ?- ask([is,the,wonder,a,fiction,book,less,than,100,pages],_).
+
