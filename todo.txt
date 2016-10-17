@@ -1,15 +1,10 @@
 
-* conjunction 'and': <adj> ..and.. <adj> ?or something like this
-
-* 'price of ...'
 
 * 'how,much,does,the,wonder,cost'
 
 * 'how,much,is,the,wonder'
 
 * 'how,long,is,the,wonder'
-
-* '...category of...<category>...'
 
 * support more than 2 words in a book title 
 
