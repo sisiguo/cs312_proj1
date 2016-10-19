@@ -89,11 +89,17 @@ reln([published, by | T],T,I1,I2,C,[published(I2,I1)|C]).
 reln([by | T],T,I1,I2,C,[wrote(I2,I1)|C]).
 reln([published | T],T,I1,I2,C,[published(I1,I2)|C]).
 reln([costs | T],T,I1,I2,C,[price(I1,I2)|C]).
+
 reln([the, author, of | T],T,I1,I2,C,[wrote(I1,I2)|C]).
 reln([the, publisher, of | T],T,I1,I2,C,[published(I1,I2)|C]).
 reln([the, length, of | T],T,I1,I2,C,[num_pages(I2,I1)|C]).
 reln([the, price, of | T],T,I1,I2,C,[price(I2,I1)|C]).
+
 reln([in, the, category, of, I2 | T],T,I1,I2,C,[category(I1,I2)|C]).
+
+reln([similar,to | T],T,I1,I2,C,[category(I1,X),category(I2,X),dif(I1,I2),dif(I1,T)|C]).
+reln([similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
+reln([similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
 reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
 reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
@@ -188,9 +194,12 @@ prove_all([H|T]) :-
 %% author_full_name(emma,donoghue).
 %% author([_,_]).
 author([emma,donoghue]).
+author([lawrence,hill]).
 
 % book(T) is true if T is a list representing the title of a book
 book([the,wonder]).
+book([frog,music]).
+book([the,illegal]).
 
 % publisher(P) is true if P is a publisher
 publisher([harperCollins]).
@@ -202,10 +211,14 @@ publisher([harperCollins]).
 
 % wrote(A,B) is true if author A wrote book B
 wrote([emma,donoghue], [the,wonder]).
+wrote([emma,donoghue], [frog,music]).
+wrote([lawrence,hill], [the,illegal]).
 
 
 % published(P,B) is true if publisher P published book B
 published([harperCollins], [the,wonder]).
+published([harperCollins], [frog,music]).
+published([harperCollins], [the,illegal]).
 
 
 %
@@ -214,9 +227,13 @@ published([harperCollins], [the,wonder]).
 
 % num_pages(B,N) is true if book B has N number of pages
 num_pages([the,wonder],304).
+num_pages([frog,music],416).
+num_pages([the,illegal],400).
 
 % price(B,N) is true if book B costs N dollars
 price([the,wonder],33).
+price([frog,music],30).
+price([the,illegal],35).
 
 % more_than_dollars(B,N) is true if book B costs more than N dollars
 more_than_dollars(B,N) :- price(B,C), C > N.
@@ -238,4 +255,7 @@ less_than_pages(B,N) :- num_pages(B,L), L < N.
 % category(B,C) is true if book B has category C
 category([the,wonder],fiction).
 category([the,wonder],historical).
+category([frog,music],fiction).
+category([frog,music],historical).
+category([the,illegal],fiction).
 
