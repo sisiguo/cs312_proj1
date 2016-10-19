@@ -54,3 +54,8 @@
 %% ?- ask([is,the,wonder,a,fiction,book,less,than,100,pages],_).
 
 %% ?- ask([what,book,is,similar,to,the,wonder],R).
+    %% ?- ask([what,books,are,similar,to,the,wonder],R).
+
+
+
+

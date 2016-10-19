@@ -69,6 +69,7 @@ mp(T,T,_,C,C).
 noun([author | T],T,Ind,C,[author(Ind)|C]).
 noun([book | T],T,Ind,C,[book(Ind)|C]).
 noun([publisher | T],T,Ind,C,[publisher(Ind)|C]).
+noun([books | T],T,Ind,C,[books(Ind)|C]).
 % The following are for proper nouns:
 noun([Ind | T],T,[Ind],C,C) :- book([Ind]).
 noun([Ind1, Ind2 | T],T,[Ind1, Ind2],C,C) :- book([Ind1, Ind2]).
@@ -100,6 +101,10 @@ reln([in, the, category, of, I2 | T],T,I1,I2,C,[category(I1,I2)|C]).
 reln([similar,to | T],T,I1,I2,C,[category(I1,X),category(I2,X),dif(I1,I2),dif(I1,T)|C]).
 reln([similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
 reln([similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
+
+reln([are,similar,to | T],T,I1,I2,C,[books_of_same_category(I1,X),books_of_same_category(I2,X)|C]).
+%% reln([are,similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
+%% reln([are,similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
 reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
 reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
@@ -163,6 +168,10 @@ question([who | T0],T2,Obj,C0,C2) :-
 question([what | T0],T2,Ind,C0,C2) :-      % allows for a "what ... is ..."
     noun_phrase(T0,[is|T1],Ind,C0,C1),
     mp(T1,T2,Ind,C1,C2).
+%% question([what | T0],T2,Ind,C0,C2) :-      % allows for a "what ... are ..."
+%%     noun_phrase(T0,[are|T1],Ind,C0,C1),
+%%     mp(T1,T2,Ind,C1,C2).
+
 
 question([what | T0],T2,Ind,C0,C2) :-
     noun_phrase(T0,T1,Ind,C0,C1),
@@ -183,6 +192,18 @@ prove_all([H|T]) :-
 %% 
 %% The Database of facts to be queried
 %% 
+
+%
+% Rules
+%
+
+% books(Ts) is true if T is a list of books
+books([H1,H2|_]) :- book([H1,H2]).
+books([_|T]) :- books(T).
+
+% books_of_same_category(L,C) is true if L is a list of books with the category C
+books_of_same_category([H1,H2],C) :- category([H1,H2],C).
+books_of_same_category([H1,H2|T],C) :- category([H1,H2],C), books_of_same_category(T,C).
 
 %
 % Individuals (noun)
