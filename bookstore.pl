@@ -102,7 +102,8 @@ reln([similar,to | T],T,I1,I2,C,[category(I1,X),category(I2,X),dif(I1,I2),dif(I1
 reln([similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
 reln([similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
-reln([are,similar,to | T],T,I1,I2,C,[books_of_same_category(I1,X),books_of_same_category(I2,X)|C]).
+reln([are,similar,to | T],T,I1,_,C,[books_of_same_category(I1),dif(I1,T)|C]).
+%% reln([are,similar,to | T],T,I1,I2,C,[books_of_same_category(I1,X),books_of_same_category(I2,X)|C]).
 %% reln([are,similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
 %% reln([are,similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
@@ -198,12 +199,14 @@ prove_all([H|T]) :-
 %
 
 % books(Ts) is true if T is a list of books
+%% books([]).
 books([H1,H2|_]) :- book([H1,H2]).
 books([_|T]) :- books(T).
 
 % books_of_same_category(L,C) is true if L is a list of books with the category C
-books_of_same_category([H1,H2],C) :- category([H1,H2],C).
-books_of_same_category([H1,H2|T],C) :- category([H1,H2],C), books_of_same_category(T,C).
+%% books_of_same_category([]).
+books_of_same_category([H1,H2|_]) :- category([H1,H2],_).
+books_of_same_category([_|T]) :- books_of_same_category(T).
 
 %
 % Individuals (noun)
