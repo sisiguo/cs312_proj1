@@ -69,7 +69,7 @@ mp(T,T,_,C,C).
 noun([author | T],T,Ind,C,[author(Ind)|C]).
 noun([book | T],T,Ind,C,[book(Ind)|C]).
 noun([publisher | T],T,Ind,C,[publisher(Ind)|C]).
-noun([books | T],T,Ind,C,[books(Ind)|C]).
+noun([books | T],T,Ind,C,[books(Ind,_)|C]).
 % The following are for proper nouns:
 noun([Ind | T],T,[Ind],C,C) :- book([Ind]).
 noun([Ind1, Ind2 | T],T,[Ind1, Ind2],C,C) :- book([Ind1, Ind2]).
@@ -102,7 +102,7 @@ reln([similar,to | T],T,I1,I2,C,[category(I1,X),category(I2,X),dif(I1,I2),dif(I1
 reln([similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
 reln([similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
-reln([are,similar,to | T],T,I1,_,C,[books_of_same_category(I1),dif(I1,T)|C]).
+reln([are,similar,to | T],T,I1,I2,C,[similar_books_category(I1,I2,_),dif(I1,T)|C]). 
 %% reln([are,similar,to | T],T,I1,I2,C,[books_of_same_category(I1,X),books_of_same_category(I2,X)|C]).
 %% reln([are,similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
 %% reln([are,similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
@@ -198,15 +198,29 @@ prove_all([H|T]) :-
 % Rules
 %
 
+% similar_books_category(A,B,C) is true if A is in the same category as B, and
+% A and B are two different books
+/*
+similar_books_category([A1,A2],[B1,B2],C) :-
+    dif([A1,A2],[B1,B2]),
+    category([A1,A2],C),
+    category([B1,B2],C).
+*/
+
+similar_books_category([A1,A2|_],[B1,B2],C) :-
+    dif([A1,A2],[B1,B2]),
+    category([A1,A2],C),
+    category([B1,B2],C).
+    
+
 % books(Ts) is true if T is a list of books
-%% books([]).
-books([H1,H2|_]) :- book([H1,H2]).
-books([_|T]) :- books(T).
+books([H1,H2|_],C) :- book([H1,H2]), category([H1,H2],C).
+books([H1,H2|T],C) :- book([H1,H2]), category([H1,H2],C), books(T,C).
 
 % books_of_same_category(L,C) is true if L is a list of books with the category C
 %% books_of_same_category([]).
-books_of_same_category([H1,H2|_]) :- category([H1,H2],_).
-books_of_same_category([_|T]) :- books_of_same_category(T).
+%% books_of_same_category([H1,H2|_],C) :- category([H1,H2],C).
+%% books_of_same_category([H1,H2|T],C) :- category([H1,H2],C), books_of_same_category([H1,H2|T],C).
 
 %
 % Individuals (noun)
@@ -219,14 +233,17 @@ books_of_same_category([_|T]) :- books_of_same_category(T).
 %% author([_,_]).
 author([emma,donoghue]).
 author([lawrence,hill]).
+author([rosalind,picard]).
 
 % book(T) is true if T is a list representing the title of a book
 book([the,wonder]).
 book([frog,music]).
 book([the,illegal]).
+book([affective,computing]).
 
 % publisher(P) is true if P is a publisher
 publisher([harperCollins]).
+publisher([mitPress]).
 
 
 %
@@ -237,12 +254,14 @@ publisher([harperCollins]).
 wrote([emma,donoghue], [the,wonder]).
 wrote([emma,donoghue], [frog,music]).
 wrote([lawrence,hill], [the,illegal]).
+wrote([rosalind,picard], [affective,computing]).
 
 
 % published(P,B) is true if publisher P published book B
 published([harperCollins], [the,wonder]).
 published([harperCollins], [frog,music]).
 published([harperCollins], [the,illegal]).
+published([mitPress], [affective,computing]).
 
 
 %
@@ -253,11 +272,13 @@ published([harperCollins], [the,illegal]).
 num_pages([the,wonder],304).
 num_pages([frog,music],416).
 num_pages([the,illegal],400).
+num_pages([affective,computing],306).
 
 % price(B,N) is true if book B costs N dollars
 price([the,wonder],33).
 price([frog,music],30).
 price([the,illegal],35).
+price([affective,computing],80).
 
 % more_than_dollars(B,N) is true if book B costs more than N dollars
 more_than_dollars(B,N) :- price(B,C), C > N.
@@ -282,4 +303,7 @@ category([the,wonder],historical).
 category([frog,music],fiction).
 category([frog,music],historical).
 category([the,illegal],fiction).
+category([affective,computing],nonfiction).
+category([affective,computing],science).
+
 
