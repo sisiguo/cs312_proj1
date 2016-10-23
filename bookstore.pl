@@ -106,9 +106,6 @@ reln([similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]
 reln([similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
 reln([are,similar,to | T],T,I1,I2,C,[similar_books_category(I1,I2,_),dif(I1,T)|C]). 
-%% reln([are,similar,to | T],T,I1,I2,C,[books_of_same_category(I1,X),books_of_same_category(I2,X)|C]).
-%% reln([are,similar,to | T],T,I1,I2,C,[wrote(I1,X),wrote(I2,X),dif(I1,I2),dif(I1,T)|C]).
-%% reln([are,similar,to | T],T,I1,I2,C,[published(I1,X),published(I2,X),dif(I1,I2),dif(I1,T)|C]).
 
 reln([more,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), more_than_pages(I1,X)|C]).
 reln([less,than,X,pages | T],T,I1,I2,C,[num_pages(I1,I2), number(X), less_than_pages(I1,X)|C]).
@@ -172,9 +169,6 @@ question([who | T0],T2,Obj,C0,C2) :-
 question([what | T0],T2,Ind,C0,C2) :-      % allows for a "what ... is ..."
     noun_phrase(T0,[is|T1],Ind,C0,C1),
     mp(T1,T2,Ind,C1,C2).
-%% question([what | T0],T2,Ind,C0,C2) :-      % allows for a "what ... are ..."
-%%     noun_phrase(T0,[are|T1],Ind,C0,C1),
-%%     mp(T1,T2,Ind,C1,C2).
 
 
 question([what | T0],T2,Ind,C0,C2) :-
