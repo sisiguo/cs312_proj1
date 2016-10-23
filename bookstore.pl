@@ -41,7 +41,10 @@ adjectives(T,T,_,C,C).
 
 % An optional modifying phrase / relative clause is either
 % a relation (verb or preposition) followed by a noun_phrase or
-% 'that' followed by a relation then a noun_phrase or
+% 'that' followed by a relation then a opt_noun_phrase or
+% 'and' followed by an adjective followed by a noun_phrase or
+% a relation followed by an adjective or
+% a relation followed by a noun or
 % nothing 
 mp([and | T0],T2,I1,C0,C2) :-
     adj(T0,T1,I1,C0,C1),
@@ -200,37 +203,22 @@ prove_all([H|T]) :-
 
 % similar_books_category(A,B,C) is true if A is in the same category as B, and
 % A and B are two different books
-/*
-similar_books_category([A1,A2],[B1,B2],C) :-
-    dif([A1,A2],[B1,B2]),
-    category([A1,A2],C),
-    category([B1,B2],C).
-*/
-
 similar_books_category([A1,A2|_],[B1,B2],C) :-
     dif([A1,A2],[B1,B2]),
     category([A1,A2],C),
     category([B1,B2],C).
     
 
-% books(Ts) is true if T is a list of books
+% books(T) is true if T is a list of books
 books([H1,H2|_],C) :- book([H1,H2]), category([H1,H2],C).
 books([H1,H2|T],C) :- book([H1,H2]), category([H1,H2],C), books(T,C).
 
-% books_of_same_category(L,C) is true if L is a list of books with the category C
-%% books_of_same_category([]).
-%% books_of_same_category([H1,H2|_],C) :- category([H1,H2],C).
-%% books_of_same_category([H1,H2|T],C) :- category([H1,H2],C), books_of_same_category([H1,H2|T],C).
 
 %
 % Individuals (noun)
 %
 
 % author([F,L]) is true if F is a first name and L is a last name of an author
-%% author(F) :- author_full_name(F,_).
-%% author(L) :- author_full_name(_,L).
-%% author_full_name(emma,donoghue).
-%% author([_,_]).
 author([emma,donoghue]).
 author([lawrence,hill]).
 author([rosalind,picard]).
