@@ -18,6 +18,7 @@ noun_phrase(T0,T4,Ind,C0,C4) :-
     noun(T2,T3,Ind,C2,C3),
     mp(T3,T4,Ind,C3,C4).
 
+% A noun phrase can be optional in some queries.
 opt_noun_phrase(T0,T4,Ind,C0,C4) :-
     det(T0,T1,Ind,C0,C1),
     adjectives(T1,T2,Ind,C1,C2),
@@ -41,7 +42,7 @@ adjectives(T,T,_,C,C).
 
 % An optional modifying phrase / relative clause is either
 % a relation (verb or preposition) followed by a noun_phrase or
-% 'that' followed by a relation then a opt_noun_phrase or
+% 'that' followed by a relation then an opt_noun_phrase or
 % 'and' followed by an adjective followed by a noun_phrase or
 % a relation followed by an adjective or
 % a relation followed by a noun or
