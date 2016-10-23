@@ -222,16 +222,33 @@ books([H1,H2|T],C) :- book([H1,H2]), category([H1,H2],C), books(T,C).
 author([emma,donoghue]).
 author([lawrence,hill]).
 author([rosalind,picard]).
+author([pierce,brown]).
+author([gord,downie]).
+author([louise,penny]).
+author([marv,wolfman]).
+author([robert,galbraith]).
+author([bob,mckenzie]).
 
 % book(T) is true if T is a list representing the title of a book
 book([the,wonder]).
 book([frog,music]).
 book([the,illegal]).
 book([affective,computing]).
+book([morning,star]).
+book([secret,path]).
+book([great,reckoning]).
+book([suicide,squad]).
+book([the,silkworm]).
+book([hockey,confidential]).
 
 % publisher(P) is true if P is a publisher
 publisher([harperCollins]).
 publisher([mitPress]).
+publisher([randomHouse]).
+publisher([simonSchuster]).
+publisher([authorHouse]).
+publisher([titanBooks]).
+publisher([collins]).
 
 
 %
@@ -243,6 +260,12 @@ wrote([emma,donoghue], [the,wonder]).
 wrote([emma,donoghue], [frog,music]).
 wrote([lawrence,hill], [the,illegal]).
 wrote([rosalind,picard], [affective,computing]).
+wrote([pierce,brown], [morning,star]).
+wrote([gord,downie], [secret,path]).
+wrote([louise,penny], [great,reckoning]).
+wrote([marv,wolfman], [suicide,squad]).
+wrote([robert,galbraith], [the,silkworm]).
+wrote([bob,mckenzie], [hockey,confidential]).
 
 
 % published(P,B) is true if publisher P published book B
@@ -250,6 +273,12 @@ published([harperCollins], [the,wonder]).
 published([harperCollins], [frog,music]).
 published([harperCollins], [the,illegal]).
 published([mitPress], [affective,computing]).
+published([randomHouse], [morning,star]).
+published([simonSchuster], [secret,path]).
+published([authorHouse], [great,reckoning]).
+published([titanBooks], [suicide,squad]).
+published([authorHouse], [the,silkworm]).
+published([collins], [hockey,confidential]).
 
 
 %
@@ -261,12 +290,24 @@ num_pages([the,wonder],304).
 num_pages([frog,music],416).
 num_pages([the,illegal],400).
 num_pages([affective,computing],306).
+num_pages([morning,star],524).
+num_pages([secret,path],96).
+num_pages([great,reckoning],389).
+num_pages([suicide,squad],320).
+num_pages([the,silkworm],455).
+num_pages([hockey,confidential],336).
 
 % price(B,N) is true if book B costs N dollars
 price([the,wonder],33).
 price([frog,music],30).
 price([the,illegal],35).
 price([affective,computing],80).
+price([morning,star],20).
+price([secret,path],16).
+price([great,reckoning],20).
+price([suicide,squad],10).
+price([the,silkworm],10).
+price([hockey,confidential],30).
 
 % more_than_dollars(B,N) is true if book B costs more than N dollars
 more_than_dollars(B,N) :- price(B,C), C > N.
@@ -293,5 +334,18 @@ category([frog,music],historical).
 category([the,illegal],fiction).
 category([affective,computing],nonfiction).
 category([affective,computing],science).
+category([morning,star],fiction).
+category([morning,star],scienceFiction).
+category([secret,path],nonfiction).
+category([secret,path],biography).
+category([great,reckoning],fiction).
+category([great,reckoning],mystery).
+category([suicide,squad],fiction).
+category([suicide,squad],superheroes).
+category([the,silkworm],fiction).
+category([the,silkworm],mystery).
+category([the,silkworm],thriller).
+category([hockey,confidential],nonfiction).
+category([hockey,confidential],sports).
 
 
