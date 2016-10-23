@@ -1,0 +1,19 @@
+###
+### (This should be written after you have done the work.) What is the
+### bottom-line? Is logic programming suitable for (part-of) the task?
+### Make sure you include the evidence for your claims.
+###
+
+Our findings are that logic programming is partially suitable for the task of a Natural language question/answer program, but only at a small scale level, with fixed length values, and covering only a small section of the English vernacular.
+
+It is evident that supporting variable lengthed values is difficult in our program. We have restricted the length of book titles and author names to be exactly 2 words long - with both being represented as lists. We made this restriction to reduce the complexity invovled in pattern matching for the words that represent a book or author in the string of question text. This can be most evidentaly seen in our 'noun' rule definitions to support proper nouns. 
+
+Furthermore, it can be seen that logic programming is only suitable for this type of task at a small scale level by the size of the program with only 10 books and only the basic qualities associated with books: category, length, price, publisher, author. To extend the program to cover any more properties that can be associated with a book (e.g. dates, whether or not it is in a series, or what book it is in a series, etc.) we would have to add additional relations and grammars to cover the many possible English speech nuances one can use to ask such questions.
+
+For example, we have added support for 'more/less than pages/dollars' type of query to our existing program. And in doing so we had to add 8 different 'reln' type rules to cover only 2 different types of ways English can ask if something is more/less than a certain value: 'what is a book that has more than 500 pages' and 'what book costs more than 20 dollars'.
+
+It can follow through then, that additional support for more properties will follow a similar pattern of requiring addition of many variations of relations and grammars which will lend to a very difficult to scale program.
+
+Additional evidence of the non-scalable quality in supporting the many variations of English speech nuances can be seen in the need for nearly 20 different definitions of the 'question' rule to catch only the very basic 'who/what/is' type of questions that can be asked of our database.
+
+In conclusion, from this study we find that while logic programming can be used in writing Natural language question/answer programs it is largely insufficient to do so in a scalable fashion with enough variety to support the various nuances of English speech in asking questions and the variable lengths of subject/verb/objects in a sentence.
